@@ -2,8 +2,9 @@
 '''Script to start Flask web application'''
 from flask import Flask
 
+
 def create_app():
-    '''creating Flask application'''
+    '''Creating Flask application'''
     app = Flask(__name__)
     app.url_map.strict_slashes = False
 
@@ -18,6 +19,7 @@ def create_app():
         return 'HBNB'
 
     return app
+
 
 if __name__ == '__main__':
     app = create_app()
