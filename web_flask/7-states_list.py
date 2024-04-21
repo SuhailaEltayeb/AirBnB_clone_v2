@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-'''
-Script to start Flask web application
+'''`
+Starting  Flask web application
 '''
 from flask import Flask, render_template
 from models import storage
@@ -11,14 +11,14 @@ app.url_map.strict_slashes = False
 
 @app.teardown_appcontext
 def close_db(exc):
-    '''closing current session'''
+    '''close the current session'''
     storage.close()
 
 
 @app.route('/states_list')
 def states_list():
     '''
-    Displaying all states in page
+    Displays an HTML page with a list of all States
     '''
     states = storage.all(State).values()
     return render_template("7-states_list.html", states=states)
