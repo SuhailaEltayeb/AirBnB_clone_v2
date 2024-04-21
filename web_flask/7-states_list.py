@@ -1,25 +1,26 @@
 #!/usr/bin/python3
-'''
-Script to start Flask web application
-'''
+"""
+Starts a Flask web application.
+"""
 
 from flask import Flask, render_template
-from models import *
 from models import storage
+
 app = Flask(__name__)
 
 
 @app.route('/states_list', strict_slashes=False)
 def states_list():
-    '''displaying HTML page with all states listed alphapitically'''
+    """Display a HTML page with the states listed in alphabetical order."""
     states = sorted(list(storage.all("State").values()), key=lambda x: x.name)
     return render_template('7-states_list.html', states=states)
 
 
 @app.teardown_appcontext
 def teardown_db(exception):
-    '''closing storage'''
+    """Closes the storage on teardown."""
     storage.close()
 
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='5000')
+    app.run(host='0.0.0.0', port=5000)
