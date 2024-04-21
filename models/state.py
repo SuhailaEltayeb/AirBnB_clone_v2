@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Defines the State class."""
+'''class State class '''
 import models
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
@@ -9,15 +9,8 @@ from os import getenv
 
 
 class State(BaseModel, Base):
-    """Represents a state for a MySQL database.
-
-    Inherits from SQLAlchemy Base and links to the MySQL table states.
-
-    Attributes:
-        __tablename__ (str): The name of the MySQL table to store States.
-        name (sqlalchemy String): The name of the State.
-        cities (sqlalchemy relationship): The State-City relationship.
-    """
+    '''Represents a state for a MySQL database
+    '''
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
 
@@ -26,12 +19,8 @@ class State(BaseModel, Base):
     else:
         @property
         def cities(self):
-            """Get a list of City instances with
-                state_id equals to the current State.id.
-
-            This is a getter attribute for FileStorage
-                relationship between State and City.
-            """
+            '''Retreive list of City instances with  current State.id
+            '''
             city_list = []
             for city in models.storage.all(City).values():
                 if city.state_id == self.id:
